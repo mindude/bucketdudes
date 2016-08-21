@@ -1,0 +1,221 @@
+<p>Assignment 1</p> <b> <br>
+  CC116 Cloud Computing <br><br>
+  Answer the following questions: </b> <br><br>
+  <b><p>1. Read the following article
+  <i><u>http://martinfowler.com/articles/microservices.html</u></i>
+  and explain what "Microservices Architecture" means. 20 points.</p></b>
+
+<p>The Microservices Architecture, based on what I understood, means to build your product as a way
+  where each element of functionality is put into a separate service, this way each function is
+independent from each other, which allows to release the product by pieces instead of the whole thing.</p>
+
+  <b><p>2. Explain each line of the cc499-setup.sh file. 20 points.</p></b>
+<br>
+<u><i>Indicates that the next commands should be read in bash language</i></u><br>
+  <p>#!/bin/bash</p>
+<u><i>What the echo command does is that it sends the string inside the "" to the
+terminal, like a Console.WriteLine in C#</i></u><br>
+  echo "Start. We are about to setup the environment for your Cloud Compting class. Excited?"<br>
+  echo ":) :) :) :) :) :) :) :) :) :) :) :) :) :)"<br>
+<br>
+
+<u><i>What the <b>cd</b> command does is that it changes directory to the one you
+write, and in the case of $HOME, what this does is that no matter in what folder you are,
+with this command it will always sends you to your HOME folder.</i></u><br>
+
+  <p>cd $HOME</p>
+
+<u><i>What the mkdir does is create directories, in this case,
+it will create the Projects folder and the .aws folder in the HOME directory.</i></u>
+<br>
+  <p>mkdir Projects<br>
+  mkdir .aws<br></p>
+
+<u><i>Here is just changing directory to the .aws that it was just created in the past command.</i></u><br>
+
+  <p>cd .aws</p>
+
+<u><i>The touch command function is to create an empty text with the name
+you give it, in this example the name is credentials.</i></u><br>
+
+  <p>touch credentials</p>
+
+<u><i>What the cd .. is doing is changing directory to one folder backwards from the
+current one.</i></u><br>
+
+  <p>cd ..</p>
+
+<u><i>First, the function of <b>sudo</b> is to act as the root user,
+this means that you will give that action the permission to do whatever it wants,
+secondly, what apt-get update command does is download the package lists from the repositories,
+and updates the indexes files.</i></u><br>
+  <p>sudo apt-get update</p>
+
+<u><i>The apt-get install -f command attemps to fix all the broken dependencies in place.</i></u><br>
+  <p>sudo apt-get install -f</p>
+<br>
+  echo " **************** Installing git  **************** "<br>
+  <u><i>Installs git on your OS.</i></u>
+  <p>sudo apt-get install git</p>
+<br>
+  echo " **************** Installing NodeJs **************** "<br>
+  <u><i>Installs nodejs, and npm on your OS.</i></u><br>
+  <p>sudo apt-get install nodejs<br>
+  sudo apt-get install npm</p>
+
+<u><i>Makes a symbolic link, which allows to associate multiple filenames to a single
+one, in this game it's linking nodejs with node.</i></u><br>
+  <p>sudo ln -s /usr/bin/nodejs /usr/bin/node</p>
+<br>
+<br>
+  echo " **************** Installing AWS CLI **************** "<br>
+<u><i>While installing python-pip, the -y command automatically answers all the prompts
+that will appear during the installation with a y</i></u><br>
+  <p>sudo apt-get -y install python-pip</p>
+<u><i></i>First it calls a pip command, then the install call is summoned
+to do installation packages action, and in the end the
+--upgrade pip states to search for the latest version
+of pip, and if there is a new one available, install the new
+one and delete the previous one</u><br>
+  <p>sudo pip install --upgrade pip</p>
+<u><i>It installs awscli, but the --ignore-installed six prevents six to be installed
+(thanks to https://github.com/pypa/pip/issues/3165 for the help)</i></u><br>
+  <p>sudo pip install awscli --ignore-installed six</p>
+<br>
+<br>
+  echo " **************** Installing yeoman **************** "<br>
+<u><i>It does a npm call, then uses the command install, the -g command
+indicates that it will be installed globally (can also called as --global), and
+in the end it indicates what it will install, in this case
+it will install yo.</i></u><br>
+  <p>sudo npm install -g yo</p>
+<br>
+<br>
+  echo " **************** Installing grunt **************** "<br>
+<u><i>Npm installs grunt-cli globally</i></u><br>
+  <p>sudo npm install -g grunt-cli</p>
+<br>
+<br>
+  echo " **************** Installing serverless **************** "<br>
+<u><i>Npm installs serverless globally</i></u><br>
+  <p>sudo npm install -g serverless</p>
+<br>
+<br>
+  echo " **************** Installing dot net core **************** "<br>
+<u><i>What the curl commando does is it downloads
+the file from a source and saves it in the current
+folder, in this case is the libunwind8, and finally the gettext
+translates what's inside the file.</i></u><br>
+  <p>sudo apt-get install curl libunwind8 gettext</p>
+<u><i>The -sSL indicates that the source is SSL protected, and the
+-o indicates the source where curl will get the file,
+for this command, first it's the name of the file (dotnet.tar.gz)
+and then the URL from where the file will be downloaded
+(https://go.microsoft.com/fwlink/?LinkID=809130)</i></u><br>
+  <p>curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=809130</p>
+<u><i>The -p command after mkdir indicates that more than 1 directory
+will be created (the opt and dotnet were created), && indicates that
+other action will be made, the tar zxf command is for gunzip and extract the
+dotnet.tar.gz file, and the -C indicates in what folders the
+extracted files will land.</i></u><br>
+  <p>sudo mkdir -p /opt/dotnet && sudo tar zxf dotnet.tar.gz -C /opt/dotnet</p>
+<u><i>Makes a symbolic link.</i></u><br>
+  <p>sudo ln -s /opt/dotnet/dotnet /usr/local/bin</p>
+<br>
+<br>
+
+  <b><p>3. Create a grunt task to deploy your website to your own bucket in S3.
+
+
+
+  30 points.</p></b>
+
+<p></p>
+
+  <b><p>4. Explain how routes work in angular and a code example.10 points.</p></b>
+
+    <p>
+      What Angular does with routes is that instead of loading each page individually, it loads the whole thing, so when you do an action
+    in the webpage, the application doesn't have to reload again.<br>
+
+    In code, this is how a route is established in the page:<br>
+    <xmp><a ng-href="#/route is matched">Homework 1</a></xmp><br>
+
+    <p>When a route is called, angular first checks the routes that are in the app.js in the .config(function ($routeProvider) {
+    $routeProvider)}, then it tries to match the submitted route with the ones available (.when('/route is matched', {}), in case nothing is matched,
+    if written in code, the path redirects to the one written in .otherwise({redirectTo: '/redirection'}), if the otherwise is not written in code,
+    Angular just tries to load the view (but loads nothing).<br>
+    Finally, inside of the {} in the .when, it is displayed a templateUrl, which searches where the view is inside the folders of the project,
+    controller who searches inside the controllers who has that name assigned, and if assigned the ControllerAs line, then the controller instance
+    will be assigned to a property on the new scope.</p>
+
+    <p><i>Example of the code app.js:</i></p>
+
+    <p>  .config(function ($routeProvider) {<br>
+      $routeProvider
+      .when('/', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl',
+      controllerAs: 'main'
+      })<br>
+      .when('/about', {
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl',
+      controllerAs: 'about'
+      })<br>
+      .when('/tareas', {
+      templateUrl: 'views/tareas.html',
+      controller: 'TareasCtrl',
+      controllerAs: 'tareas'
+      })<br>
+      .when('/homework1', {
+      templateUrl: 'views/homework1.html',
+      controller: 'Homework1Ctrl',
+      controllerAs: 'homework1'
+      })<br>
+      .when('/homeworkindex', {
+      templateUrl: 'views/homeworkindex.html',
+      controller: 'HomeworkindexCtrl',
+      controllerAs: 'homeworkindex'
+      })<br>
+      .otherwise({
+      redirectTo: '/'
+      });
+      });</p>
+
+    <p><i>Example of the homework1.js</i></p>
+    <p>
+      angular.module('bucketdudesApp')<br>
+      <b>.controller('Homework1Ctrl', function () {</b><br>
+      this.awesomeThings = [<br>
+      'HTML5 Boilerplate',<br>
+      'AngularJS',<br>
+      'Karma'<br>
+      ];<br>
+      });<br>
+    </p>
+
+
+
+    </p>
+
+
+  <b><p>5. Explain how you can have more than one access key in your computer and how to
+  use each one. Provide code or configuration examples.
+  10 points.</p></b>
+  <b><p>6. Explain what are you going to do different this semester based on last semester
+  experience.
+  10 points.</p></b>
+  <p>What I'm going to do different this semester is to start working on the final project from the very beginning
+  of the semester instead of working seriously on it on the last month.</p>
+
+<p>Sources:
+  <p>
+    https://docs.angularjs.org/guide/controller
+  </p>
+</p>
+
+<p>
+  People who helped: Adrian helped with giving me this source that answered question 3:<br>
+  http://inspire.blufra.me/grunt-and-aws-s3-how-to-streamline-your-deployment-process/
+</p>

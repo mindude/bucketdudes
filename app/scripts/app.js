@@ -34,6 +34,16 @@ angular
         controller: 'TareasCtrl',
         controllerAs: 'tareas'
       })
+      .when('/homework1', {
+        templateUrl: 'views/homework1.html',
+        controller: 'Homework1Ctrl',
+        controllerAs: 'homework1'
+      })
+      .when('/homeworkindex', {
+        templateUrl: 'views/homeworkindex.html',
+        controller: 'HomeworkindexCtrl',
+        controllerAs: 'homeworkindex'
+      })
       .otherwise({
         redirectTo: '/'
       });
