@@ -27,25 +27,32 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
-  //aws settings
-
     aws: grunt.file.readJSON( 'aws-keys.json' ),
-  
+
     aws_s3: {
-        options: {
-            accessKeyId: '<%= aws.AWSAccessKeyId %>',
+      options: {
+	    accessKeyId: '<%= aws.AWSAccessKeyId %>',
             secretAccessKey: '<%= aws.AWSSecretKey %>'
+      },
+      dist: {
+        options: {
+          bucket: 'bucketdudes'
         },
-        dist: {
-            options: {
-                bucket: 'YOUR BUCKET NAME'
-            }
-        }
-    }
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/',
+            src: [ '**' ],
+            dest: '/'
+          }
+        ]
+      }
+    },
 
     // Project settings
     yeoman: appConfig,
+
+
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -60,6 +67,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
+
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
@@ -433,6 +441,7 @@ module.exports = function (grunt) {
       ]
     },
 
+
     // Test settings
     karma: {
       unit: {
@@ -457,6 +466,8 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+grunt.registerTask('deploy', 'aws_s3:dist');
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');

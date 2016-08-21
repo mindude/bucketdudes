@@ -107,16 +107,18 @@ the file from a source and saves it in the current
 folder, in this case is the libunwind8, and finally the gettext
 translates what's inside the file.</i></u><br>
   <p>sudo apt-get install curl libunwind8 gettext</p>
+
 <u><i>The -sSL indicates that the source is SSL protected, and the
 -o indicates the source where curl will get the file,
 for this command, first it's the name of the file (dotnet.tar.gz)
 and then the URL from where the file will be downloaded
 (https://go.microsoft.com/fwlink/?LinkID=809130)</i></u><br>
+
   <p>curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=809130</p>
-<u><i>The -p command after mkdir indicates that more than 1 directory
-will be created (the opt and dotnet were created), && indicates that
+<u><i>The -p (parent) command after mkdir indicates that more than 1 directory
+will be created (the opt folder was created, and inside opt, dotnet was created), && indicates that
 other action will be made, the tar zxf command is for gunzip and extract the
-dotnet.tar.gz file, and the -C indicates in what folders the
+dotnet.tar.gz file, and the -C indicates in what folder the
 extracted files will land.</i></u><br>
   <p>sudo mkdir -p /opt/dotnet && sudo tar zxf dotnet.tar.gz -C /opt/dotnet</p>
 <u><i>Makes a symbolic link.</i></u><br>
@@ -130,7 +132,55 @@ extracted files will land.</i></u><br>
 
   30 points.</p></b>
 
-<p></p>
+<p>The way I did it was based on this guide: <u>http://inspire.blufra.me/grunt-and-aws-s3-how-to-streamline-your-deployment-process/</u></p>
+<br>
+<p>First you must run this on your terminal:</p>
+
+<p><u>npm i grunt-aws-s3 --save-dev</u></p>
+
+<p>Then you create inside the folder project a new file named <b>aws-keys.json</b>, inside the file you write this:</p>
+<br>
+<p>
+  {<br>
+  "AWSAccessKeyId": "YOUR ACCESS KEY ID",<br>
+  "AWSSecretKey": "YOUR SECRET ACCESS KEY"<br>
+  }<br>
+</p>
+<br>
+<p>After that, on your grunt file you will insert inside the grunt.initConfig this:</p>
+<br>
+<p>
+grunt.initConfig({<br>
+  ..<br>
+  aws: grunt.file.readJSON( 'aws-keys.json' ),<br>
+  aws_s3: {<br>
+  options: {<br>
+  accessKeyId: '<%= aws.AWSAccessKeyId %>',<br>
+  secretAccessKey: '<%= aws.AWSSecretKey %>'<br>
+  },<br>
+  dist: {<br>
+  options: {<br>
+  bucket: 'YOUR BUCKET'<br>
+  },<br>
+  files: [<br>
+  {<br>
+  expand: true, cwd: 'dist/',src: [ '**' ],dest: '/'
+            }<br>
+      ]<br>
+    }<br>
+},<br>
+  ..<br>
+  }
+</p>
+<br>
+
+<p>Once finished, you create the task "deploy" deepdown where the grunt.registerTask are, like this:</p>
+<p>grunt.registerTask('deploy', 'aws_s3:dist');</p>
+<br>
+<p>Now you run in your project folder "grunt build", and after the build is finished, now you can just run "grunt deploy"
+and your new task should deploy the project in your bucket</p>
+
+
 
   <b><p>4. Explain how routes work in angular and a code example.10 points.</p></b>
 
@@ -203,6 +253,23 @@ extracted files will land.</i></u><br>
   <b><p>5. Explain how you can have more than one access key in your computer and how to
   use each one. Provide code or configuration examples.
   10 points.</p></b>
+
+  <p>In the credentials file, there is a [default] tag that defines your default key and secret key, however,
+  adding another tag will create another key with the elements you add, which are known as "profiles" example:</p>
+<p>
+  [default]<br>
+  aws_access_key_id=DEFAULTKEY<br>
+  aws_secret_access_key=DEFAULTSECRET<br>
+  [notdefault]<br>
+  aws_access_key_id=ANOTHERKEY<br>
+  aws_secret_access_key=ANOTHERSECRET<br>
+</p>
+
+<p>Example of how to use them:</p>
+<p>aws s3 sync --profile notdefault . s3://default </p>
+
+<p><i>Code was taken directly from <u>http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs</u></i></p>
+
   <b><p>6. Explain what are you going to do different this semester based on last semester
   experience.
   10 points.</p></b>
@@ -217,5 +284,6 @@ extracted files will land.</i></u><br>
 
 <p>
   People who helped: Adrian helped with giving me this source that answered question 3:<br>
-  http://inspire.blufra.me/grunt-and-aws-s3-how-to-streamline-your-deployment-process/
+  http://inspire.blufra.me/grunt-and-aws-s3-how-to-streamline-your-deployment-process/<br>
+  And Ruth who guided me with question 5.
 </p>
