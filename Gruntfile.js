@@ -467,7 +467,7 @@ module.exports = function (grunt) {
     ]);
   });
 
-grunt.registerTask('deploy', 'aws_s3:dist');
+grunt.registerTask('deploy', ['build','aws_s3:dist']);
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');

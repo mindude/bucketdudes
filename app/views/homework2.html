@@ -1,0 +1,116 @@
+<b><p>1.
+Automate the deployment of your web site using Grunt.
+15 points.</p></b>
+<p>The way I did it was based on this guide: <u>http://inspire.blufra.me/grunt-and-aws-s3-how-to-streamline-your-deployment-process/</u></p>
+<br>
+<p>First you must run this on your terminal:</p>
+
+<p><code><u>npm i grunt-aws-s3 --save-dev</u></code></p>
+
+<p>Then you create inside the folder project a new file named <b>aws-keys.json</b>, inside the file you write this:</p>
+<br>
+<p><code>
+  {
+  "AWSAccessKeyId": "YOUR ACCESS KEY ID",<br>
+  "AWSSecretKey": "YOUR SECRET ACCESS KEY"<br>
+  }
+</code></p>
+<br>
+<p>After that, on your grunt file you will insert inside the grunt.initConfig this:</p>
+<br>
+<p><code>
+  grunt.initConfig({<br>
+  ..<br>
+  aws: grunt.file.readJSON( 'aws-keys.json' ),<br>
+  aws_s3: {<br>
+  options: {<br>
+  accessKeyId: '<%= aws.AWSAccessKeyId %>',<br>
+  secretAccessKey: '<%= aws.AWSSecretKey %>'<br>
+  },<br>
+  dist: {<br>
+  options: {<br>
+  bucket: 'YOUR BUCKET'<br>
+  },<br>
+  files: [<br>
+  {<br>
+  expand: true, cwd: 'dist/',src: [ '**' ],dest: '/'
+  }<br>
+  ]<br>
+  }<br>
+  },<br>
+  ..<br>
+  }</code>
+</p>
+<br>
+
+<p>Once finished, you create the task "deploy" deepdown where the grunt.registerTask are, like this:</p>
+<p><code>grunt.registerTask('deploy', 'aws_s3:dist');</code></p>
+<br>
+<p>Now you run in your project folder "grunt build", and after the build is finished, now you can just run "grunt deploy"
+  and your new task should deploy the project in your bucket</p><br>
+<b><p>2.
+Create a Hello World in NodeJs and create a tutorial about it.
+15 points.</p></b>
+
+<p>
+  First you create a file with the name you with (In case of this tutorial: hello.js), and then inside the file you write this code:
+<code>
+  console.log("Hello World");
+</code>
+</p>
+<br>
+
+After that, you start terminal, locate where is your file (in my case, is in Desktop, so I would have to write first <code>cd Desktop</code> in the terminal) and then only write <code>node hello.js</code> and everything inside the JS should run.
+<br>
+<br>
+
+<b><p>3.
+Install the aws sdk for nodejs and create a tutorial about it.
+15 points.</p></b>
+
+<p>Just open your terminal, then go to your project file (For example: <code>cd myProject</code>) and finally write this code to install aws sdk for nodejs:
+<br>
+<code>npm install aws-sdk</code><br>
+  <br>
+  NOTE: if it doesn't work, try with <code>sudo npm install aws-sdk</code>
+<p><i>Resource used: https://aws.amazon.com/sdk-for-node-js/</i></p>
+<b><p>4.
+Create a code in NodeJs that will tell you the version/date of your website in S3.
+15
+points.</p></b>
+
+<p><code>
+  var AWS = require('aws-sdk');<br>
+  AWS.config.region = 'us-west-2';<br>
+  var s3 = new AWS.S3();<br>
+  var YOUR_BUCKET = "bucketdudes";<br>
+  s3.listBuckets(function(err, data) {<br>
+  if (err) { console.log("Error:", err); }<br>
+  else {<br>
+  for (var index in data.Buckets) {<br>
+  var bucket = data.Buckets[index];<br>
+    if(bucket.Name == YOUR_BUCKET){<br>
+  console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);<br>
+  }<br>
+  }<br>
+  }<br>
+  });
+</code></p>
+
+<p><i>Resource used for this code: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-examples.html</i></p><br>
+<b><p>5.
+Read and explain the post about Microservices Trade-Offs by Martin Fowler
+(http://martinfowler.com/articles/microservice-trade-offs.html).
+15 points.</p></b>
+<b>
+ <p></p>
+  <p>6.
+Create a comparison table between AWS, Azure and Google Cloud.
+15 points.</p></b>
+<p></p>
+<b><p>7.
+Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell
+me what you think about it.
+10 points.</p></b>
+
+Teamed with: Abraham Villalobos.
