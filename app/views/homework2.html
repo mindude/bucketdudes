@@ -58,15 +58,23 @@ Automate the deployment of your web site using Grunt.
 Create a Hello World in NodeJs and create a tutorial about it.
 15 points.</p></b>
 
+<p>To use NodeJS, you must first install it, the easiest way to set up is by
+opening your terminal and run these lines:</p>
+<code>sudo apt-get install nodejs<br>
+  sudo apt-get install npm<br>
+  sudo ln -s /usr/bin/nodejs /usr/bin/node<br></code>
+<br>
 <p>
-  First you create a file with the name you with (In case of this tutorial: hello.js), and then inside the file you write this code:
+  Once the installation is finshed, create a file with an extension .js (In case of this tutorial: hello.js),
+  and then inside the file you write this code:
 <code>
   console.log("Hello World");
 </code>
 </p>
 <br>
 
-After that, you start terminal, locate where is your file (in my case, is in Desktop, so I would have to write first <code>cd Desktop</code> in the terminal) and then only write <code>node hello.js</code> and everything inside the JS should run.
+After that, locate where is your file (in my case, is in Desktop, so I would have to write first <code>cd Desktop</code> in the terminal) and in the terminal you only
+have to write <code>node hello.js</code> and everything inside the JS should run.
 <br>
 <br>
 
@@ -79,6 +87,11 @@ Install the aws sdk for nodejs and create a tutorial about it.
 <code>npm install aws-sdk</code><br>
   <br>
   NOTE: if it doesn't work, try with <code>sudo npm install aws-sdk</code>
+<br>
+<p>Finally, if you want to use it, just put on your code <code>var AWS = require('aws-sdk');</code>
+  and specify your region with this <code>AWS.config.region = 'YOUR REGION';</code>like what
+I did in the answer 4.</p>
+
 <p><i>Resource used: https://aws.amazon.com/sdk-for-node-js/</i></p>
 <b><p>4.
 Create a code in NodeJs that will tell you the version/date of your website in S3.
