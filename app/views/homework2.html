@@ -1,3 +1,9 @@
+<style>
+  table, th, td {
+    border: 1px solid black;
+  }
+</style>
+
 <b><p>1.
 Automate the deployment of your web site using Grunt.
 15 points.</p></b>
@@ -81,15 +87,26 @@ points.</p></b>
 
 <p><code>
   var AWS = require('aws-sdk');<br>
+<br>
   AWS.config.region = 'us-west-2';<br>
+  <br>
+  var YOUR_BUCKET = "bucketdudes"<br>
   var s3 = new AWS.S3();<br>
-  var YOUR_BUCKET = "bucketdudes";<br>
+  var params = { Bucket: YOUR_BUCKET, Key:'index.html' };<br>
+  <br>
+  s3.getObject(params, function(err, data)<br>
+  { if (err) console.log(err, err.stack);<br>
+  else<br>
+  console.log('This is how you get the "Website version"');<br>
+  console.log("Last-edit: ",data.LastModified); });<br>
+  <br>
   s3.listBuckets(function(err, data) {<br>
   if (err) { console.log("Error:", err); }<br>
   else {<br>
+  console.log('This is how you get the "Bucket version"');<br>
   for (var index in data.Buckets) {<br>
   var bucket = data.Buckets[index];<br>
-    if(bucket.Name == YOUR_BUCKET){<br>
+  if(bucket.Name == YOUR_BUCKET){<br>
   console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);<br>
   }<br>
   }<br>
@@ -97,20 +114,301 @@ points.</p></b>
   });
 </code></p>
 
-<p><i>Resource used for this code: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-examples.html</i></p><br>
+<p><i>Resource used for this code: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-examples.html</i></p>
+<p>Also, Ruth helped me with the "Website Version"</p><br>
 <b><p>5.
 Read and explain the post about Microservices Trade-Offs by Martin Fowler
 (http://martinfowler.com/articles/microservice-trade-offs.html).
 15 points.</p></b>
-<b>
- <p></p>
-  <p>6.
+
+ <p>The post talks about the pros and cons of using Microservices, and to think about these trade-offs before deciding if it's worth
+ using them on your software, these are points that Martin Fowler talked in his post:</p>
+  <u>PROS:</u>
+  <p>Strong Module Boundaries: Every module can work indepently but at the same time it can comunicate without trouble with other modules.</p>
+<p>Independent Deployment: Because of the previous point, every module can be deployed indepently without the need of other modules to work.</p>
+<p>Technology Diversity: And because every module can be worked indepently, a module can use any technology without affecting other modules.</p>
+<u>CONS</u>
+<p>Distribution: Because everything works indepently, this also means that every module will be distributed, which based on what Martin
+Fowler says, that makes hard to have good performance, and it also makes debbuging troubling because of all the independent procceses.</p>
+<p>Eventual Consistency: Because everything is distribuited, maintaining consistency is hard, which if consistency is eventually not maintained
+there will be some things out-of-date in the product, which will make the product look very incosistency.</p>
+<p>Operational Complexity: Because of having so many modules that acts indepently, the operational complexity it's high, that it needs a matured
+team to get the product to work.</p>
+  <b><p>6.
 Create a comparison table between AWS, Azure and Google Cloud.
 15 points.</p></b>
-<p></p>
+
+
+Compute comparison<br>
+
+  <table>
+
+    <tr>
+      <th></th>
+      <th>
+        AWS
+      </th>
+      <th>
+        Google Cloud
+      </th>
+      <th>
+        Azure
+      </th>
+    </tr>
+    <tr>
+      <td>Instance families</td>
+      <td>7</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>
+        Instances types
+      </td>
+      <td>
+38
+      </td>
+      <td>
+18
+      </td>
+      <td>
+33
+      </td>
+    </tr>
+  <tr>
+    <td>
+      Regions
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Zones
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>
+<br>
+Storage and Databases comparison
+
+<table>
+
+  <tr>
+    <th></th>
+    <th>
+      AWS
+    </th>
+    <th>
+      Google Cloud
+    </th>
+    <th>
+      Azure
+    </th>
+  </tr>
+  <tr>
+    <td>Ephemeral (Temporary)</td>
+    <td>YES</td>
+    <td>YES</td>
+    <td>Temporary Storage - DDrive</td>
+  </tr>
+  <tr>
+    <td>
+      BLock Storage
+    </td>
+    <td>
+      EBS
+    </td>
+    <td>
+      Persistent disks
+    </td>
+    <td>
+      Page Blobs
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Object storage
+    </td>
+    <td>
+      S3
+    </td>
+    <td>
+      Google Cloud Storage
+    </td>
+    <td>
+      Block blobs
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Relational DB
+    </td>
+    <td>
+      RDS
+    </td>
+    <td>
+      Google Cloud SQL
+    </td>
+    <td>
+      Relational DBs
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Archiving
+    </td>
+    <td>
+      Glacier
+    </td>
+    <td>
+      Nearline
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>
+<br>
+Networking comparison
+<table>
+
+  <tr>
+    <th></th>
+    <th>
+      AWS
+    </th>
+    <th>
+      Google Cloud
+    </th>
+    <th>
+      Azure
+    </th>
+  </tr>
+  <tr>
+    <td>Virtual network</td>
+    <td>VCP</td>
+    <td>subnet</td>
+    <td>VNet</td>
+  </tr>
+  <tr>
+    <td>
+      Public IP
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Hybrid CLoud
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+
+    </td>
+    <td>
+      YES
+    </td>
+  </tr>
+  <tr>
+    <td>
+      DNS
+    </td>
+    <td>
+      Route 53
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Firewall/ACL
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+    <td>
+      YES
+    </td>
+  </tr>
+</table>
+<br>
+Pricing comparison
+
+<table>
+
+  <tr>
+    <th></th>
+    <th>
+      AWS
+    </th>
+    <th>
+      Google Cloud
+    </th>
+    <th>
+      Azure
+    </th>
+  </tr>
+  <tr>
+    <td>Pricing</td>
+    <td>Per hour - rounded up</td>
+    <td>Per minute - rounded up (minimum 10 minutes</td>
+    <td>Per minute - rounded up commitments (pre-paid or monthly)</td>
+  </tr>
+  <tr>
+    <td>
+      Models
+    </td>
+    <td>
+      On demand, reserved, spot
+    </td>
+    <td>
+      On demand - sustained use
+    </td>
+    <td>
+      On demand - short term commitments (pre-paid or monthly)
+    </td>
+  </tr>
+</table>
+<br>
+<p><i>Source: http://cloudacademy.com/blog/public-cloud-war-aws-vs-azure-vs-google/</i></p>
+<br>
 <b><p>7.
 Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell
 me what you think about it.
 10 points.</p></b>
-
-Teamed with: Abraham Villalobos.
+<p>I gotta say, it's pretty interesting and for me it told us many things that should be obvious
+for society, but for some reason society refuses to acknowledge.</p>
+<br><br>
+<i>Teamed with: Abraham Villalobos.</i>
