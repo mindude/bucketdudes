@@ -40,5 +40,9 @@
   },
   "scripts": {
     "test": "karma start test/karma.conf.js"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "request": "^2.74.0"
   }
 }

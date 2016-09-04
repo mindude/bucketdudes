@@ -1,0 +1,193 @@
+<p>1. Create a NodeJS script that will do the following:<br>
+  •Download and Image from S3.<br>
+  •Check if the metadata key “Move” of the image is true.<br>
+  •If true, upload the image to s3://cc116-assignment3/{MATRICULA}/image.png<br>
+  •20 points.</p>
+
+upload_image.js<br>
+<code>
+  var s3Helper = require('./S3Helper');<br>
+  var async = require('async');<br>
+  s3Helper.readFromS3inStream("bucketdudes", 'images/yeoman.519a31bc.png', 'dont-expect-a-lot-from-us.png')<br>
+  s3Helper.readFromS3("bucketdudes", 'images/yeoman.519a31bc.png', function(error, data){<br>
+  if (error){<br>
+  //console.log(error);<br>
+  }<br>
+  else{<br>
+  if (data.Metadata.move == 'true'){<br>
+  var fs = require('fs');<br>
+  var content = fs.createReadStream('dont-expect-a-lot-from-us.png');<br>
+  s3Helper.saveInS3("cc116-assignment3","021749/dont-expect-a-lot-from-us.png", content, function (error, data) {<br>
+  if(error){<br>
+  callback(error);<br>
+  }<br>
+  else{<br>
+  console.log("You finished homework part 1");<br>
+  }<br>
+  })<br>
+  }<br>
+  else{<br>
+  console.log("Metadata is false");<br>
+  }<br>
+  }<br>
+  });
+</code>
+<br>
+<br>
+S3Helper.js<br>
+<code>
+  var AWS = require('aws-sdk');<br>
+  var s3 = new AWS.S3();<br>
+  <br>
+  module.exports.saveInS3 = function(bucket, key, content, callback){<br>
+  var params = {<br>
+  Bucket: bucket,<br>
+  Key: key,<br>
+  Body: content,<br>
+  ACL: "public-read",<br>
+  Metadata: {Move: "true"}<br>
+  };<br>
+  <br>
+  s3.upload(params, function (error, data) {<br>
+  if(error){<br>
+  callback(error);<br>
+  }<br>
+  else{<br>
+  callback(null, data);<br>
+  }<br>
+  });<br>
+  };<br>
+  <br>
+  module.exports.readFromS3inStream = function(bucket, key, stream, callback){<br>
+  var fs = require('fs');<br>
+  var writeStream = fs.createWriteStream(stream);<br>
+  <br>
+  var params = {<br>
+  Bucket: bucket,<br>
+  Key: key<br>
+  };<br>
+  <br>
+  s3.getObject(params).createReadStream().pipe(writeStream);<br>
+  };<br>
+  <br>
+  module.exports.readFromS3 = function(bucket, key, callback){<br>
+  var params = {<br>
+  Bucket: bucket,<br>
+  Key: key<br>
+  };<br>
+  <br>
+  s3.getObject(params, function(error, data){<br>
+  if(error){<br>
+  callback(error);<br>
+  }<br>
+  else{<br>
+  callback(null, data);<br>
+  }<br>
+  });<br>
+  };
+</code>
+
+<p>Reference used: <i><u>https://nodejs.org/api/stream.html</u></i>, <u><i>http://codewinds.com/blog/2013-08-04-nodejs-readable-streams.html</i></u></p>
+<p>Also used this to understand streaming: <i><u>http://neethack.com/2013/12/understand-node-stream-what-i-learned-when-fixing-aws-sdk-bug/</u></i></p>
+
+<br>
+<p>
+2. Create a NodeJS script that will do the following:<br>
+  •Will get the Nasa Astronomic Picture of the day.<br>
+  •Save the image in the local file system.<br>
+  •Print the title of the image.<br>
+  •20 points.<br>
+</p>
+
+<p>I used <code>npm install request</code> in order to get all the content inside
+<i><u>https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY</u></i>, credits to Favela who
+  gave me the idea of getting the contents with this </p>
+
+<code>
+  var urlnasa = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";<br>
+  var request = require('request');<br>
+  <br>
+  var fs = require('fs');<br>
+  var writeStream = fs.createWriteStream('dailynasa.jpg');<br>
+  <br>
+  var params = {<br>
+  url: urlnasa,<br>
+  json: 'true'<br>
+  };<br>
+  <br>
+  request(params, function(err, options, callback){<br>
+  if (err){<br>
+  console.log(err);<br>
+  }<br>
+  else{<br>
+  request(callback.url).pipe(writeStream);<br>
+  console.log(callback.title);<br>
+  }<br>
+  });
+</code>
+
+<br>
+
+<br>
+<p>3.  Implement Google Analytics in your personal web site (All teams will do the same
+    for their Final Project). 20 points.</p>
+<img src="images/ScreenshotForHW3.png">
+<br>
+Credits to Ruth for telling me that I had to register... spent 2 hours searching just for something
+so simple...
+
+<br>
+<br>
+<p>4.  Read and explain the following article by Martin Fowler:
+http://martinfowler.com/articles/richardsonMaturityModel.html. 20 points</p>
+<br>
+<p>
+  The article talks about the model of REST, and how it works, and to explain it, the
+  authors use a model of restful maturity that was developed by Leonard Richardson and
+  explained at a QCon talk.
+</p>
+<br>
+<br>
+<p>Level 0: The Swamp of POX</p>
+<p>The starting point of this model is using HTTP as a transport
+system for remote interactions, but it doesn't use any mechanisms of the web,
+in other words, every interaction is made locally.</p>
+<p>What it does basically is calling anything (a JSON, YAML, key-value pairs, or any
+custom format) in order to render the requested page, without the need of doing
+another call to the web.</p>
+<br>
+<p>Level 1: Resources</p>
+<p>The next step on the model is to divide every function to individual resources,
+in order to do a request on a single object that have all the necessary information,
+  rather than having to do all our requests to a
+  singular service endpoint.</p>
+<br>
+<p>Level 2: HTTP Verbs</p>
+<p>In this level, unlike Level 0 and 1, it uses the HTTP verbs in order to
+do HTTP functions, like using the GET verb in order to retrieve information,
+or the POST verb in order to send information.</p>
+<br>
+<p>Level 3: Hypermedia Controls</p>
+<p>The last level use something called HATEOAS (Hypertext As The
+Engine Of Application State). This lets the URI to manipulate how the information
+  will be handled, by telling the client how to do it in the response of the
+  hypermedia controls, it also lets the server to change its URI scheme
+  without breaking clients.</p>
+<br>
+<p>5.  Explain why cloud computing is important. 10 points.</p>
+<br>
+<p>
+Based on what I learned in classes and what I searched on the internet, the main reason why cloud
+  computing is so important is because it let us use a lot of resources without having them locally,
+  so we can do heavy computing working without the need to buy the resources, the other reason of why
+  cloud computing is so important is is that we can do what we want ANYWHERE,
+  and from almost any device, as long as there is internet and that the device can handle the returning
+  information.
+</p>
+<br>
+<p>6.  Explain what would like to change in this class and why.  10 points.</p>
+<br>
+<p>I would like to see the homework published in Monday instead of Tuesday in the night,
+because it gives me the free hours that I have in Tuesday to work on the homework instead
+of doing everything in Thursday and Saturday.</p>
+
