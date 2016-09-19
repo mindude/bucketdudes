@@ -1,13 +1,12 @@
 var aws = require('aws-sdk');
 var lambda = new aws.Lambda({region:'us-east-1'});
 var async = require('async');
+//Here it loads the 1,000,000 array.
 var jObj = require('./intarray.json');
 
 
-//var nArray = JSON.parse(JSON.stringify(jObj));
+var nArray = JSON.parse(JSON.stringify(jObj));
 
-var nArray=[0,5,2];
-//console.log(sorted);
 module.exports.handler=function(event,context,cb){
 
   var params =

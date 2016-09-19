@@ -38,19 +38,41 @@ elements. 20 points.</p>
   var sorted = mergeSort(nArray);<br>
   console.log(sorted);<br>
 </code>
+
+References: <i><u>https://www.nczonline.net/blog/2012/10/02/computer-science-and-javascript-merge-sort/</u></i>
 <br>
 <p>2.
 Benchmark the On-Prem implementation. 10 points.</p>
+
+<img src="images/LapDetails.png">
+
+<img src="images/benchmarkONPREM.png">
+
+Max CPU used: 48%<br>
+Max MEMORY used: 195.3 MiB
+
 <br>
 <p>3.
 Implement the merge sort algorithm with an integer array of 1,000,000 in a parallel
 approach using micro-services architecture in AWS.
 60 points.</p><br>
+<p>
+<a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handler.js">Homework Lambda (just to retrieve the 1,000,000 array)</a>
+</p><p>
+  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeSort.js">MergeSort Code Helper</a>
+</p><p>
+  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeHelper.js">Merge Code Helper</a>
+</p>
 
-Homework Lambda (just to retrieve the 1,000,000 array)
-
-
+<p>NOTE: For some reason, in the end the Payload returns an <b>object Object</b> if the array is way too big.</p>
 
 <p>4.
 Benchmark the AWS implementation.
 10 points.</p>
+<br>
+
+<img src="images/benchmarkAWS.png">
+
+Teamed with: Sergio Adrian
+
+Credits to: Favela for helping me with the invokes and using context.success() instead of returns.
