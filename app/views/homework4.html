@@ -1,43 +1,8 @@
 <p>1. Implement the merge sort algorithm On-Prem with an integer array of 1,000,000
 elements. 20 points.</p>
-<code>
-  var jObj = require('./intarray.json');<br>
-  <br>
-  var nArray = JSON.parse(JSON.stringify(jObj));<br>
-  <br>
-  function mergeSort(items){<br>
-  <br>
-  // Terminal case: 0 or 1 item arrays don't need sorting<br>
-  if (items.length < 2) {<br>
-  return items;<br>
-  }<br>
-  <br>
-  var middle = Math.floor(items.length / 2),<br>
-  left    = items.slice(0, middle),<br>
-  right   = items.slice(middle);<br>
-  <br>
-  return merge(mergeSort(left), mergeSort(right));<br>
-  }<br>
-  <br>
-  function merge(left, right){<br>
-  var result  = [],<br>
-  il      = 0,<br>
-  ir      = 0;<br>
-  <br>
-  while (il < left.length && ir < right.length){<br>
-  if (left[il] < right[ir]){<br>
-  result.push(left[il++]);<br>
-  } else {<br>
-  result.push(right[ir++]);<br>
-  }<br>
-  }<br>
-  <br>
-  return result.concat(left.slice(il)).concat(right.slice(ir));<br>
-  }<br>
-  <br>
-  var sorted = mergeSort(nArray);<br>
-  console.log(sorted);<br>
-</code>
+</p><p>
+  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/HW4MergeSortOn-PremAlgorithm.js">Click here to see the code</a>
+</p>
 
 References: <i><u>https://www.nczonline.net/blog/2012/10/02/computer-science-and-javascript-merge-sort/</u></i>
 <br>
@@ -58,10 +23,12 @@ approach using micro-services architecture in AWS.
 60 points.</p><br>
 <p>
 <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handler.js">Homework Lambda (just to retrieve the 1,000,000 array)</a>
-</p><p>
-  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeSort.js">MergeSort Code Helper</a>
-</p><p>
-  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeHelper.js">Merge Code Helper</a>
+</p>
+<p>
+  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeHelper.js">MergeSort Code Helper</a>
+</p>
+<p>
+  <a href="https://github.com/mindude/bucketdudes/blob/master/files/JS_for_examples/handlerMergeSort.js">Merge Code Helper</a>
 </p>
 
 <p>NOTE: For some reason, in the end the Payload returns an <b>object Object</b> if the array is way too big.</p>
