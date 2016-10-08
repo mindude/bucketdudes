@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="665a1802-eaa4-491e-9db7-6c8eb54da4bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/homework5.html" afterPath="$PROJECT_DIR$/app/views/homework5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/homeworkindex.html" afterPath="$PROJECT_DIR$/app/views/homeworkindex.html" />
-    </list>
+    <list default="true" id="665a1802-eaa4-491e-9db7-6c8eb54da4bc" name="Default" comment="" />
     <ignored path="bucketdudes.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -444,12 +438,12 @@
       <workItem from="1475458058396" duration="2093000" />
       <workItem from="1475467487275" duration="1520000" />
       <workItem from="1475469510053" duration="650000" />
-      <workItem from="1475958739720" duration="835000" />
+      <workItem from="1475958739720" duration="1437000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94703000" />
+    <option name="totallyTimeSpent" value="95305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
