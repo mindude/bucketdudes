@@ -1,0 +1,24 @@
+<div><p>1.
+  Create a web app to be able to send message to a specific Slack channel. The web
+  app will have:
+  <br>•
+  HTML View + angular controller to call your own end point.
+  <br>•
+  API Gateway end point available to the world with an application key (you
+  will generate this app key in AWS Console)
+  <br>•
+  Lambda integrated with API Gateway end point that will log the action and
+  post the message to the Slack channel.
+  <br>•
+  Integration with Github, so every time a push is made to the repo it will post
+  a message to the team group.
+  <br>•
+  100 points.</p></div>
+<br>
+<br>
+<p>This application is for send a message to the munchos slack channel, try it!</p>
+
+<div>Username: <input type="text" ng-model="username"></div>
+<div>Message to send: <input type="text" ng-model="message"></div>
+<input type="button" value="Send to the Munchos Channel!" ng-click="sendMessage()">
+<div><p>{{result}}</p></div>
