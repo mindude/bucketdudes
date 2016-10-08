@@ -4,3 +4,5 @@
 /.sass-cache
 /bower_components
 /aws-keys.json
+duderealtesting-sls/EdgarPushNotifier/token.json
+duderealtesting-sls/SendMessageToChannel/token.json
