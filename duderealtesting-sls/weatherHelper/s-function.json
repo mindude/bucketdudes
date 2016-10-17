@@ -4,7 +4,7 @@
   "description": "Serverless Lambda function for project: duderealtesting-sls",
   "customName": false,
   "customRole": "arn:aws:iam::292274580527:role/cc116_lambda",
-  "handler": "handler.handler",
+  "handler": "weatherHelper/handler.handler",
   "timeout": 300,
   "memorySize": 1024,
   "authorizer": {},

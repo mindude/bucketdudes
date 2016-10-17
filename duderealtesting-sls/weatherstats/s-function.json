@@ -1,11 +1,11 @@
 {
-  "name": "weatherApp",
+  "name": "weatherstats",
   "runtime": "nodejs4.3",
   "description": "Serverless Lambda function for project: duderealtesting-sls",
   "customName": false,
-  "customRole": false,
-  "handler": "weatherApp/handler.handler",
-  "timeout": 6,
+  "customRole": "arn:aws:iam::292274580527:role/cc116_lambda",
+  "handler": "weatherstats/handler.handler",
+  "timeout": 300,
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "weatherApp",
+      "path": "weatherstats",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",

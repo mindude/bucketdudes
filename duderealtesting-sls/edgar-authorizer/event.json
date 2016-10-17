@@ -1,0 +1,5 @@
+{
+  "type":"TOKEN",
+  "authorizationToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvbGEiLCJwZXJtaXNzaW9ucyI6eyJnZXRXZWF0aGVyU2ltcGxlIjp0cnVlLCJnZXRXZWF0aGVyTXVsdGlwbGUiOnRydWUsImdldFdlYXRoZXJTdGF0cyI6ZmFsc2V9LCJpYXQiOjE0NzY2NzI5MDh9.w3DYr_2ifs_ue4Vhmfz1hJOcGY2BvCNNL6TNrzeR9gQ",
+  "methodArn":""
+}
