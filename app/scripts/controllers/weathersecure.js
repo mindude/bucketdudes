@@ -15,13 +15,18 @@ angular.module('bucketdudesApp')
         city: $scope.cities.split(",")
       };
 
-      $http.put('https://ts4xmfum6f.execute-api.us-east-1.amazonaws.com/dev/conseguirClimaDeMultiplesCiudades', data)
-        .success(function(data){
+      $http({
+        method: 'PUT',
+        url: 'https://ts4xmfum6f.execute-api.us-east-1.amazonaws.com/dev/conseguirClimaDeMultiplesCiudades',
+        headers: { 'Authorization': localStorage.getItem('token') },
+        data: data
+      })
+        .success(function (data) {
           $scope.result = data;
         })
-        .error(function(error){
-          alert(error);
-        })
+        .error(function (data) {
+          console.log(data);
+        });
     };
 
     $scope.valido=function(){

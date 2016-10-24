@@ -1,0 +1,260 @@
+<i><p>1. Read the Well Architected Framework white paper from Amazon Web Services and write a summary about it in your personal web site.
+  <br>• http://d0.awsstatic.com/whitepapers/architecture/AWS_Well-
+  Architected_Framework.pdf
+  <br>• 100 points.</p></i>
+<br><br>
+<p>The paper of Amazon Web Services (AWS) begins with tellings us that is intended for those in technology roles,
+  and that after reading the paper, the reader will understand AWS best practices and strategies to use when designing a cloud architecture.
+  However, it points that the paper does not provide implementation details or architectural patterns, but it does include
+  references to appropriate resources for that information.
+  <br><br>
+
+  <h3><b>Definition of the AWS Well-Architected
+  Framework</b></h3>
+
+  In order to evaluate how well an architecture is aligned to AWS best practices,
+  they have created the AWS Well-Architected Framework.
+  To understand the definition of the AWS Well-Architected Framework,
+  the paper give us the four pillars base that the AWS Well-Architected Framework uses.
+  <br><br>
+
+
+
+  <h4><b>Security</b> </h4>Encompasses ability to protect information, systems, and assets while delivering
+    business value through risk assessments and mitigation strategies.
+<br>
+<h5><u>Design Principles</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Apply security at all layers:</b>
+  Use security controls on all of your resources.
+  </li>
+  <li><b>Enable traceability:</b>
+  Log and audit all actions and changes to your environment.
+  </li>
+  <li><b>Automate responses to security events:</b>
+  Monitor and automatically trigger responses to event-driven, or condition-driven, alerts.
+  </li>
+  <li><b>Focus on securing your system: </b>
+  You can only focus on securing your application, data, and operating systems while AWS takes care of the security of the infrastructure and services using the
+    AWS Shared Responsibility Model.
+  </li>
+  <li><b>Automate security best practices: </b>
+  Create an entire infrastructure that is defined and managed in a template.
+  </li>
+</ul>
+
+<h5><u>Best practices</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Data Protection:</b>
+    Using controls and patterns designed to keep your data confidential.
+  </li>
+  <li><b>Privilege Management:</b>
+  Only authorized and authenticated users are able to access your resources, <b>and only in a manner that is intended</b>
+  </li>
+  <li><b>Infrastructure protection: </b> Many of the concepts and methods are valid
+  across cloud and on-premises models. Enforcing boundary protection, monitoring points of ingress and egress, and comprehensive
+  logging, monitoring, and alerting are all essential to an effective information security plan.</li>
+  <li><b>Detective Controls: </b> Controls to detect or identify a security breach. These
+  controls are important reactive factors that help organizations identify and understand the
+  scope of anomalous activity.</li>
+
+</ul>
+<br><br>
+  <h4><b>Reliability</b> </h4>The ability of a system to recover from infrastructure or service failures,
+    dynamically acquire computing resources to meet
+    demand, and mitigate
+    disruptions such as misconfigurations or transient network issues.
+
+<h5><u>Design Principles</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Test recovery procedures:</b>
+    In the cloud, you can test how your system fails, and you
+    can validate your recovery procedures.
+  </li>
+  <li><b>Automatically recover from failure:</b>
+    By monitoring a system for key performance indicators (KPIs), you can trigger
+    automation when a threshold is breached.
+  </li>
+  <li><b>Scale horizontally to increase aggregate system availability:</b>
+    Replace one large resource with multiple small resources to reduce
+    the impact of a single failure on the overall system.
+  </li>
+  <li><b>Stop guessing capacity: </b>
+    In the cloud, you can monitor demand and system utilization, and automate the
+    addition or removal of resources.
+  </li>
+</ul>
+
+<h5><u>Best practices</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Foundations:</b>
+    Foundational requirements that influence reliability should be in place.
+    In an on -premises environment, these requirements can cause long lead times due
+    to dependencies and therefore must be incorporated during initial planning.
+    In AWS, most of these foundational requirements are already incorporated.
+  </li>
+  <li><b>Change Management:</b>
+    You can control who has permission to make system changes and audit the
+    history of these changes.
+  </li>
+  <li><b>Failure Management: </b>
+    A key to managing failure is the frequent, and automated testing of systems
+    to failure and through recovery.
+  </li>
+
+</ul>
+
+<br><br>
+
+  <h4><b>Performance Efficiency</b></h4>The ability to use computing resources efficiently to meet system
+    requirements, and to maintain that efficiency as demand changes and
+    technologies evolve.
+
+<h5><u>Design Principles</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Democratize advanced technologies:</b>
+    Technologies that are difficult to implement can become easier to consume
+    by pushing that knowledge and complexity into the cloud vendor’s domain.
+  </li>
+  <li><b>Go global in minutes:</b>
+    Easily deploy your system in multiple regions around
+    the world with just a few clicks.
+  </li>
+  <li><b>Use server-less architectures:</b>
+    Server-less architectures remove the need for you to run and
+    maintain servers to carry out traditional compute activities.
+  </li>
+  <li><b>Experiment more often: </b>
+    With virtual and automatable resources, you can quickly carry out
+    comparative testing using different types of instances, storage, or configurations.
+  </li>
+</ul>
+
+<h5><u>Best practices</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Compute:</b>
+    The optimal server configuration for a particular architecture
+    may vary based on application design, usage patterns,
+    and configuration settings. Many systems use
+    different server configurations for various components and enable different features
+    to improve performance.<br>
+    In AWS, servers are virtualized and, therefore, you can change
+    their capabilities with the click of a button or an API call.
+  </li>
+  <li><b>Storage:</b>
+    Well architected systems use multiple storage solutions and enable different features to
+    improve performance.<br>
+    When selecting a storage solution, it is important to have
+    test data that shows which storage solution will deliver the cost/valuemargin
+    required for that workload.
+  </li>
+  <li><b>Database: </b>
+    During the build and deployment of your database solution,
+    treat the database as  code to allow it to evolve over
+    time rather than be a one-time fixed decision. Use
+    test data to identify which database solution matches each workload best.
+  </li>
+  <li><b>Space-time trade-off: </b>
+    Space-time trade-offs are required to deliver performance
+    efficiency, and it is important to have test data that
+    shows which trade-offs match that workload best.
+    These tests should be repeatable so that you can easily test new
+    approaches or capabilities as they become available.
+  </li>
+
+</ul>
+
+<br><br>
+  <h4><b>Cost Optimization</b></h4>The ability to avoid or eliminate unneeded cost or suboptimal resources.
+
+
+<h5><u>Design Principles</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Transparently attribute expenditure:</b>
+    The cloud makes it easier to identify the
+    cost of a system and attribute
+    IT costs to individual business owners.
+  </li>
+  <li><b>Use managed services to reduce cost of ownership:</b>
+    Managed services remove the operational burden of maintaining servers
+    for tasks such as sending email or managing databases.
+  </li>
+  <li><b>Trade capital expense for operating expense:</b>
+    Pay only for the computing resources you consume, when you consume them.
+  </li>
+  <li><b>Benefit from economies of scale: </b>
+    By using cloud computing, you may achieve a lower variable cost than you could
+    on your own because AWS can achieve higher economies of scale.
+  </li>
+  <li><b>Stop spending money on data center operations: </b>
+    AWS does the heavy lifting of racking, stacking, and powering servers, so
+    you can focus on your customers and business projects rather than on IT infrastructure.
+  </li>
+</ul>
+
+<h5><u>Best practices</u></h5>
+<ul style="list-style-type:disc">
+  <li><b>Matched Supply and Demand:</b>
+    Monitoring tools and regular benchmarking can help you achieve much
+    greater utilization of resources.
+    The flexibility of on-demand computing, Auto Scaling, and other automated
+    deployment mechanisms facilitate a greater degree of optimization,
+    ensuring that you provision only the resources you need
+    and are able to scale horizontally.
+  </li>
+  <li><b>Cost-Effective Resources:</b>
+    A  well architected system will use the most
+    cost-effective resources, which can have a significant and positive
+    economic impact. You also have the opportunity to  use managed
+    services to reduce costs.<br>
+    By using tools such as AWS Trusted Advisor to regularly review your AWS
+    usage, you can actively monitor your utilization and adjust your deployments accordingly.
+  </li>
+  <li><b>Expenditure awareness:</b>
+    Many businesses are composed of multiple systems
+    run by various teams. The capability to attribute resource costs to the
+    individual business or product owners drives efficient usage
+    behavior and helps reduce waste. Accurate cost attribution also
+    allows you to understand which products are truly profitable,
+    and allows you to make more informed decisions about where to allocate budget.
+    <br>
+    You can use cost allocation tags to categorize and track your AWS costs.
+  </li>
+  <li><b>Optimizing over time: </b>
+    As AWS releases new services and features, it is a best practice
+    to reassess your existing architectural decisions to ensure they
+    continue to be the most cost effective.<br>
+    Managed services from AWS can often significantly optimize a solution,
+    so it is good to be aware of new managed services as they become available.
+    <br>
+    By regularly reassessing your deployment, it is often possible to utilize
+    new AWS services to lower your costs.
+  </li>
+
+</ul>
+
+<br><br>
+
+<h3><b>General Design Principles</b></h3>
+The
+Well-Architected Framework identifies a set of general design
+principles to facilitate good design in the cloud:
+<br><br>
+<ul style="list-style-type:disc">
+<li><b>Stop guessing your capacity needs: </b>With cloud computing, the guessing
+game is a thing of the past, because you can use as much or as little capacity as you need, and scale up and down automatically.</li>
+<li><b>Test systems at production scale:</b> You can simulate realistic environment using a test enviroment with Cloud, something
+that in a traditional, non-cloud enviroment, it is usually cost-prohibitive to create a duplicate environment solely for testing.</li>
+<li><b>Lower the risk of architecture change: </b>Because you can automate the creation of test environments that emulate your production configurations, tests can be carried easily.</li>
+<li><b>Automate to make architectural experimentation easier:</b>
+Because there is no need for manual effort thanks to that automation allows you to create and replicate your systems at low cost.
+</li>
+<li><b>Allow for evolutionary architectures:
+</b>
+Because in the cloud the capability to automate and test on demand lowers the
+  risk of impact from design changes, this allows the systems to make changes and evolve.
+</li>
+</ul>
+
+
+</p>
